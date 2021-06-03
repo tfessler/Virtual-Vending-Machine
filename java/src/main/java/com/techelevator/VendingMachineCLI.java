@@ -13,6 +13,7 @@ public class VendingMachineCLI {
 	private Menu menu;
 
 	public VendingMachineCLI(Menu menu) {
+
 		this.menu = menu;
 	}
 
