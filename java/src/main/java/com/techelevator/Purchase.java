@@ -9,7 +9,7 @@ public class Purchase {
     private double productPrice;
 
 
-    public void Change (HashMap<Integer, Double> changeReturned, double fedMoney, double productPrice){
+    public void Change (HashMap<Integer, Double> changeReturned, double fedMoney, double productPrice) {
         this.fedMoney = fedMoney;
         this.productPrice = productPrice;
     }
