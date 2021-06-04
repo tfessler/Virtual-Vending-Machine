@@ -3,9 +3,9 @@ package com.techelevator;
 
 public class Beverage extends Product {
 
-    public Beverage ( String productName, double primitiveDouble ) {
+    public Beverage ( String productName, double primitiveDouble, String productType ) {
 
-        super( productName, primitiveDouble );
+        super( productName, primitiveDouble, productType );
     }
 
     String sound = "Glug Glug Yum!";
