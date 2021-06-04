@@ -12,8 +12,8 @@ public class VendingMachine {
         //Key-Value map for the <Slot> and <Queue>, the Queue will contain the product objects
         //and we can get the size of the queue to determine if it's empty or not.
         File inputList;
-        Map<String, Queue> slotMap = new HashMap<String, Queue>();
-        Queue<Product> productList = new LinkedList<Product>();
+        Map<String, Stack> slotMap = new HashMap<String, Stack>();
+        Stack<Product> productList = new Stack<Product>();
         Double fedMoney = 0.00;
         String selectedProduct;
 
@@ -34,26 +34,42 @@ public class VendingMachine {
 
     //Methods
 
-        private Map<String, Queue> convertInputFileToMap(File inputList) {
+        private Map<String, Stack> convertInputFileToMap(File inputList) {
 
             try {
 
-                String line;
                 Scanner inputScanner = new Scanner(inputList);
+                String line;
+                Map<String, Stack> vmSlotMap = new HashMap<>();
+
 
                 while (inputScanner.hasNextLine()) {
                     line = inputScanner.nextLine();
                     String[] strArr = line.split("\\|");
 
                     // Creating the objects
-                    // System.out.println(Arrays.toString(strArr));
-                    String objectName;
+                    System.out.println(Arrays.toString(strArr));
 
-                    if (strArr[3] == "Chip") {
+                    if (strArr[3].equals("Chip")) {
                         int chipCounter = 0;
-                        objectName = "Chip" + strArr[0];
-                        Chips chip = new Chips(strArr[2], strArr[1]);
+                        Stack stack = new Stack();
 
+                        for (int i = 0; i < 5; i++) {
+                            Chips chip = new Chips(strArr[03], Double.parseDouble(strArr[2]));
+                            stack.push(chip);
+                            //push stack to map
+                        }
+                        vmSlotMap.put(strArr[0], stack);
+                    } else if (strArr[3].equals("Candy")) {
+                        int chipCounter = 0;
+                        Stack stack = new Stack();
+
+                        for (int i = 0; i < 5; i++) {
+                            Chips chip = new Chips(strArr[03], Double.parseDouble(strArr[2]));
+                            stack.push(chip);
+                            //push stack to map
+                        }
+                        vmSlotMap.put(strArr[0], stack);
                     }
 
                 }
