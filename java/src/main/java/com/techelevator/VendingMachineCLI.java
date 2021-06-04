@@ -3,6 +3,7 @@ package com.techelevator;
 import com.techelevator.view.Menu;
 
 import java.io.File;
+import java.util.Scanner;
 
 public class VendingMachineCLI {
 
@@ -23,12 +24,22 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 
-
-
 				// display vending machine items
-				String path =
+				Scanner scanner = new Scanner(System.in);
+				String path = (System.getProperty("user.dir") + "\\vendingmachine.csv");
 				File inputList = new File(path);
-				VendingMachine vendingMachine = new VendingMachine()
+
+				if (inputList.exists()) {
+					System.out.print("Stocking vending machine via: ");
+					System.out.println(path);
+					VendingMachine vendingMachine = new VendingMachine(inputList);
+				} else {
+					System.out.println("Inventory file does not exist.");
+					System.out.print("Enter absolute path of inventory file: ");
+					path = scanner.nextLine();
+					File userInputList = new File(path);
+					VendingMachine vendingMachine = new VendingMachine(userInputList);
+				}
 
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
