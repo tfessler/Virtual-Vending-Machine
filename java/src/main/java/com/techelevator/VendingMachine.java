@@ -22,9 +22,9 @@ public class VendingMachine {
         public VendingMachine(File inputList) {
             this.inputList = inputList;
             //letting me know it received the file
-            System.out.println(inputList.getAbsolutePath());
+            System.out.println("Success! -- " + inputList.getAbsolutePath());
             //letting me know it received the file
-            System.out.println("Stocking vending machine...");
+            System.out.println("Loading inventory...");
             convertInputFileToMap(inputList);
         }
 
@@ -42,7 +42,7 @@ public class VendingMachine {
                 Scanner inputScanner = new Scanner(inputList);
 
                 while (inputScanner.hasNextLine()) {
-                    line = inputScanner.nextLine()
+                    line = inputScanner.nextLine();
                     String[] strArr = line.split("\\|");
 
                     //creating the objects
