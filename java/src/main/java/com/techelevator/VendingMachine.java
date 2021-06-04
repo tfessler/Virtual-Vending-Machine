@@ -51,8 +51,8 @@ public class VendingMachine {
 
                     if (strArr[3] == "Chip") {
                         int chipCounter = 0;
-                        objectName = "Chip" + strArr[0];
                         Chips chip = new Chips(strArr[2], strArr[1]);
+
 
                     }
 
