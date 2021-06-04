@@ -1,4 +1,4 @@
-package com.techelevator.view;
+package com.techelevator;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
