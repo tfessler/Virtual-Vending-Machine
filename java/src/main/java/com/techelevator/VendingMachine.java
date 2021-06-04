@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import com.sun.source.tree.Tree;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
@@ -9,11 +10,8 @@ public class VendingMachine {
 
     //Instance Variables
 
-        //Key-Value map for the <Slot> and <Queue>, the Queue will contain the product objects
-        //and we can get the size of the queue to determine if it's empty or not.
         File inputList;
-        Map<String, Stack> slotMap = new HashMap<String, Stack>();
-        Stack<Product> productList = new Stack<Product>();
+        TreeMap<String, Stack> vendingInventory = new TreeMap<>();
         Double fedMoney = 0.00;
         String selectedProduct;
 
@@ -25,7 +23,9 @@ public class VendingMachine {
             System.out.println("Success! -- " + inputList.getAbsolutePath());
             //letting me know it received the file
             System.out.println("Loading inventory...");
-            convertInputFileToMap(inputList);
+            setMapFromInputFile(inputList);
+            //Now just loop thru the tree map and sout it somehow
+            displayItems();
         }
 
 
@@ -34,7 +34,7 @@ public class VendingMachine {
 
     //Methods
 
-        private Map<String, Stack> convertInputFileToMap(File inputList) {
+        private void setMapFromInputFile(File inputList) {
 
             try {
 
@@ -44,6 +44,7 @@ public class VendingMachine {
 
 
                 while (inputScanner.hasNextLine()) {
+
                     line = inputScanner.nextLine();
                     String[] strArr = line.split("\\|");
 
@@ -51,37 +52,57 @@ public class VendingMachine {
                     System.out.println(Arrays.toString(strArr));
 
                     if (strArr[3].equals("Chip")) {
-                        int chipCounter = 0;
-                        Stack stack = new Stack();
-
+                        Stack<Product> stack = new Stack<Product>();
                         for (int i = 0; i < 5; i++) {
-                            Chips chip = new Chips(strArr[03], Double.parseDouble(strArr[2]));
+                            Chips chip = new Chips(strArr[03], Double.parseDouble(strArr[2]), strArr[1]);
                             stack.push(chip);
                             //push stack to map
                         }
                         vmSlotMap.put(strArr[0], stack);
-                    } else if (strArr[3].equals("Candy")) {
-                        int chipCounter = 0;
-                        Stack stack = new Stack();
 
+                    } else if (strArr[3].equals("Candy")) {
+                        Stack<Product> stack = new Stack<Product>();
                         for (int i = 0; i < 5; i++) {
-                            Chips chip = new Chips(strArr[03], Double.parseDouble(strArr[2]));
-                            stack.push(chip);
+                            Candy candy = new Candy(strArr[03], Double.parseDouble(strArr[2]), strArr[1]);
+                            stack.push(candy);
+                            //push stack to map
+                        }
+                        vmSlotMap.put(strArr[0], stack);
+
+                    } else if (strArr[3].equals("Drink")) {
+                        Stack<Product> stack = new Stack<Product>();
+                        for (int i = 0; i < 5; i++) {
+                            Beverage drink = new Beverage(strArr[03], Double.parseDouble(strArr[2]), strArr[1]);
+                            stack.push(drink);
+                            //push stack to map
+                        }
+                        vmSlotMap.put(strArr[0], stack);
+
+                    } else if (strArr[3].equals("Gum")) {
+                        Stack<Product> stack = new Stack<Product>();
+                        for (int i = 0; i < 5; i++) {
+                            Gum gum = new Gum(strArr[03], Double.parseDouble(strArr[2]), strArr[1]);
+                            stack.push(gum);
                             //push stack to map
                         }
                         vmSlotMap.put(strArr[0], stack);
                     }
-
                 }
 
+                TreeMap<String, Stack> slotTreeMap = new TreeMap<>();
+                slotTreeMap.putAll(vmSlotMap);
+                this.vendingInventory = slotTreeMap;
 
             } catch (FileNotFoundException e) {
                 System.out.println("Error");
                 e.printStackTrace();
             }
+        }
 
-
-            return null;
+        private void displayItems() {
+            for (Map.Entry<String, Stack> entry : vendingInventory.entrySet()) {
+                System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue().peek());
+            }
         }
 
 }
