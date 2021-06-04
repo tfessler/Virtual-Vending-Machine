@@ -1,11 +1,11 @@
 package com.techelevator;
 
-import java.math.BigDecimal;
 
 public class Beverage extends Product {
 
-    public Beverage ( BigDecimal price, String productName ) {
-        super( price, productName );
+    public Beverage ( String productName, double primitiveDouble ) {
+
+        super( productName, primitiveDouble );
     }
 
     String sound = "Glug Glug Yum!";
