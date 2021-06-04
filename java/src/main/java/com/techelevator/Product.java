@@ -10,6 +10,7 @@ public abstract class Product {
         public Product( BigDecimal price, String productName ) {
             this.price = price;
             this.productName = productName;
+            //conversion here double to bigdec
         }
 
     public BigDecimal getPrice() {

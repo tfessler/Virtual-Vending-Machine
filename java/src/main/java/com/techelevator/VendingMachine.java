@@ -45,7 +45,17 @@ public class VendingMachine {
                     line = inputScanner.nextLine();
                     String[] strArr = line.split("\\|");
 
-                    //creating the objects
+                    // Creating the objects
+                    // System.out.println(Arrays.toString(strArr));
+                    String objectName;
+
+                    if (strArr[3] == "Chip") {
+                        int chipCounter = 0;
+                        objectName = "Chip" + strArr[0];
+                        Chips objectName = new Chips(strArr[2]., strArr[1]);
+
+                    }
+
                 }
 
 
