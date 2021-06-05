@@ -43,4 +43,9 @@ public abstract class Product {
     public BigDecimal setScale(int newScale, RoundingMode roundingMode) {
         return (BigDecimal.valueOf(primitiveDouble));
     }
+
+    @Override
+    public String toString() {
+        return getProductName();
+    }
 }
