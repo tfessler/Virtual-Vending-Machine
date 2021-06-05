@@ -4,10 +4,28 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 public class Purchase {
+    BigDecimal balance = BigDecimal.valueOf(0.00);
+
+    public void addMoney(BigDecimal amountToDeposit) {
+      double balance += (amountToDeposit);
+    }
+
+
+    public Purchase() {
+        balance = BigDecimal.valueOf(0);
+    }
+
+
+
     //declared to use later in other classes
 
 
     private HashMap<Integer, Double> changeReturned;
+
+
+    public static void addMoney(int billInserted) {
+
+    }
 
 
     //contructor

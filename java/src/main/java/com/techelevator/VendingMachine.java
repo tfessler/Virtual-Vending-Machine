@@ -3,6 +3,7 @@ package com.techelevator;
 import com.sun.source.tree.Tree;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -27,6 +28,12 @@ public class VendingMachine {
             //Now just loop thru the tree map and sout it somehow
             displayItems();
         }
+
+    public static void feedMoney(int billInserted) throws IOException {
+        Purchase.addMoney(billInserted);
+        String billInsertedAsString = "$" + billInserted;
+       // adds when money is inserted Logger.logEvent("Feed Money:", billInsertedAsString, getBalanceAsString());
+    }
 
 
     //Getters & Setters
@@ -100,7 +107,11 @@ public class VendingMachine {
 
         private void displayItems() {
             for (Map.Entry<String, Stack> entry : vendingInventory.entrySet()) {
-                System.out.println("Key: " + entry.getKey() + ". Value: " + ((Product)entry.getValue().peek()).toString());
+
+                // String productItem = entry.getValue();
+                //System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue().peek());
+                // String productItem = entry.getValue();
+                System.out.println("Key: " + entry.getKey() + ". Value: " + ((Product)entry.getValue().peek()).getProductName());
             }
         }
 
