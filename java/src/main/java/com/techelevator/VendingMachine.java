@@ -100,7 +100,11 @@ public class VendingMachine {
 
         private void displayItems() {
             for (Map.Entry<String, Stack> entry : vendingInventory.entrySet()) {
-                System.out.println("Key: " + entry.getKey() + ". Value: " + ((Product)entry.getValue().peek()).toString());
+
+                // String productItem = entry.getValue();
+                System.out.println("Key: " + entry.getKey() + ". Value: " + entry.getValue().peek());
+                // String productItem = entry.getValue();
+                // System.out.println("Key: " + entry.getKey() + ". Value: " + ((Product)entry.getValue().peek()).toString());
             }
         }
 

@@ -46,6 +46,10 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return getProductName();
+        String itemInfo;
+        itemInfo = this.productType + ", " + this.productName + ", " + "$" + this.primitiveDouble;
+
+       return itemInfo;
+        // return getProductName();
     }
 }
