@@ -62,11 +62,6 @@ public class VendingMachine {
 
         }
 
-    public static void feedMoney(int billInserted) throws IOException {
-        Purchase.addMoney(billInserted);
-        String billInsertedAsString = "$" + billInserted;
-       // adds when money is inserted Logger.logEvent("Feed Money:", billInsertedAsString, getBalanceAsString());
-    }
 
 
     //Getters & Setters
@@ -219,6 +214,13 @@ public class VendingMachine {
                         System.out.println("That slot is empty!");
                     }
                 }
+
+
+            public static void feedMoney(int billInserted) throws IOException {
+                Purchase.addMoney(billInserted);
+                String billInsertedAsString = "$" + billInserted;
+                // adds when money is inserted Logger.logEvent("Feed Money:", billInsertedAsString, getBalanceAsString());
+            }
 
 
 
