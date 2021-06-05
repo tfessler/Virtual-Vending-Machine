@@ -49,7 +49,6 @@ public class VendingMachine {
                     String[] strArr = line.split("\\|");
 
                     // Creating the objects
-                    System.out.println(Arrays.toString(strArr));
 
                     if (strArr[3].equals("Chip")) {
                         Stack<Product> stack = new Stack<Product>();
