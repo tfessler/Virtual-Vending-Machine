@@ -31,6 +31,34 @@ public class VendingMachine {
             vendProduct("A1");
             vendProduct("A1");
             vendProduct("A1");
+            vendProduct("A2");
+            vendProduct("A2");
+            vendProduct("A2");
+            vendProduct("A2");
+            vendProduct("A2");
+            vendProduct("A2");
+            vendProduct("A2");
+            vendProduct("D2");
+            vendProduct("D2");
+            vendProduct("D2");
+            vendProduct("D2");
+            vendProduct("D2");
+            vendProduct("D2");
+            vendProduct("D2");
+            vendProduct("Z2");
+            vendProduct("Z2");
+            vendProduct("Z2");
+            vendProduct("Z2");
+            vendProduct("Z2");
+            vendProduct("Z2");
+
+
+
+
+
+
+
+
         }
 
 
