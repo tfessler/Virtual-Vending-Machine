@@ -44,16 +44,19 @@ public class Logger {
         } else if (logFile.exists() && logFile.isDirectory()) {
             System.out.println("The Directory with name 'log.txt' exists.");
         }
-
-        try (FileOutputStream lines = new FileOutputStream(logFile, true);
+            //Output to the file, all of transaction data wo
+        try (FileOutputStream entries = new FileOutputStream(logFile, true);
              PrintWriter pw = new PrintWriter(logFile)) {
+
                 pw.println("This is the Vending Machine transaction history");
                 pw.append(String.format(new SimpleDateFormat("MM/dd/YYYY hh:mm:ss a").format(new java.util.Date())));
                 pw.append(String.format(line));
                 pw.append(String.format("$" + beginning.toString()));
                 pw.append(String.format("$" + end.toString()));
 
-             } catch (IOException e) {
+                pw.flush();
+
+        } catch (IOException e) {
             System.out.println("Log File has been closed! Could not get transaction History.");
         }
     }
