@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 
 public class Logger {
 
@@ -45,15 +46,16 @@ public class Logger {
         }
 
         try (FileOutputStream lines = new FileOutputStream(logFile, true);
+             PrintWriter pw = new PrintWriter(logFile)) {
+                pw.println("This is the Vending Machine transaction history");
+                pw.append(String.format(new SimpleDateFormat("MM/dd/YYYY hh:mm:ss a").format(new java.util.Date())));
+                pw.append(String.format(line));
+                pw.append(String.format("$" + beginning.toString()));
+                pw.append(String.format("$" + end.toString()));
 
-
-
-
-
-
-
-
-
+             } catch (IOException e) {
+            System.out.println("Log File has been closed! Could not get transaction History.");
+        }
     }
 }
 
