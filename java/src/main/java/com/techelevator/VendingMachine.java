@@ -56,13 +56,16 @@ public class VendingMachine {
             vendProduct("Z2");
 
 
+            //return to main menu?
+
+
 
 
 
         }
     public VendingMachine() throws IOException {
             vendingMachineCoins = new Purchase();
-    }
+    }// not sure what i was thinking here?
 
 
     public void feedMoney(int billInserted) throws IOException {

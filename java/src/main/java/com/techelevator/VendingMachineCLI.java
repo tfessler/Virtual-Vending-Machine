@@ -53,7 +53,7 @@ public class VendingMachineCLI {
 			else if (choice.equals(MAIN_MENU_OPTION_PURCHASE))
 				label:while (true) {
 
-					String choice2 = (String) menu.getUserChoiceInputPurchaseMenu(PURCHASE_MENU_OPTIONS);
+					String choice2 = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 
 
 					switch (choice2) {
@@ -79,7 +79,7 @@ public class VendingMachineCLI {
 
 
 
-	public static void main(String[] args) throws IOException {
+	public void main(String[] args) throws IOException {
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();

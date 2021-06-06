@@ -61,7 +61,7 @@ public class Menu {
 		Object choice = null;
 		while (choice == null) {
 			displayMenuPurchaseMenu(options);
-			choice = getUserChoiceInputPurchaseMenu(options);
+			choice = getChoiceFromOptions(options);
 		}
 
 
@@ -69,7 +69,7 @@ public class Menu {
 	}
 
 
-	public Object getUserChoiceInputPurchaseMenu(Object[] options) {
+	/*public Object getUserChoiceInputPurchaseMenu(Object[] options) {
 		Object choice = null;
 		String userInput = in.nextLine();
 		try {
@@ -85,7 +85,7 @@ public class Menu {
 			out.println("\n*** " + userInput + " is not a valid option ***\n");
 		}
 		return choice;
-	}
+	}*/
 
 	private void displayMenuPurchaseMenu(Object[] options) {
 		Purchase balance = new Purchase();

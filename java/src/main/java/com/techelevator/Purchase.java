@@ -1,7 +1,5 @@
 package com.techelevator;
-
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.HashMap;
 
 public class Purchase {
@@ -9,32 +7,25 @@ public class Purchase {
 
     private double balance;
 
-
     public double getBalance() {
         return balance;
     }
 
     public void addMoney(double amountToDeposit) {
-        balance = (amountToDeposit);
+        this.balance += amountToDeposit;
     }
-
 
     public Purchase() {
         balance = 0;
     }
 
-
-
     //declared to use later in other classes
 
-
     private HashMap<Integer, Double> changeReturned;
-
 
     public static void addMoney(int billInserted) {
 
     }
-
 
     //constructor
     public void Purchase (HashMap<Integer, Double> changeReturned, double fedMoney, double productPrice){
@@ -104,9 +95,8 @@ public class Purchase {
 
     public String purchaseItem(String slot) throws IOException {
         VendingMachine newVendingMachine = new VendingMachine();
-
         try {
-            if ((newVendingMachine.getVendingInventory().containsKey(slot))) {
+            if (!newVendingMachine.getVendingInventory().containsKey(slot)) {
                 System.out.println("That slot is empty!");
                 //} else if ( fed money < vendedItem cost ) { //use maps price value with slot key
                 return "Please Insert Additional Funds \n";
@@ -117,7 +107,7 @@ public class Purchase {
                 String successfulPurchase = "Thank You For Purchasing ";
                 //+ .getName() +  .getSound());
                 // need .logEvent(.getName() + "  " + slot, balanceBeforePurchase, getBalanceAsString());
-                return successfulPurchase + displaysChange();
+                return successfulPurchase;
             }
 
         } catch (NullPointerException e){
