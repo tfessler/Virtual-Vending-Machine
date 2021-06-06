@@ -10,7 +10,7 @@ public abstract class Product {
     private double primitiveDouble;
     private String productType;
 
-    public Product( String productName, double primitiveDouble, String productType ) {
+    public Product(String productName, double primitiveDouble, String productType) {
         this.productName = productName;
         this.primitiveDouble = primitiveDouble;
         this.productType = productType;
@@ -52,4 +52,3 @@ public abstract class Product {
        return itemInfo;
         // return getProductName();
     }
-}
