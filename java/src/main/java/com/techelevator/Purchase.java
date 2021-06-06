@@ -1,8 +1,26 @@
 package com.techelevator;
+import com.techelevator.view.Menu;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 
 public class Purchase {
+    private Scanner in = new Scanner(System.in);
+    private PrintWriter out;
+
+
+    public Purchase(InputStream input, OutputStream output) {
+        this.out = new PrintWriter(output);
+        this.in = new Scanner(input);
+    }
+
 
 
     private double balance;
@@ -48,15 +66,17 @@ public class Purchase {
 
 
 
-    public static HashMap changeReturned(double getFedMoney, double getProductPrice) {
+    public static HashMap changeReturned(double feedMoney, double productPrice) {
         HashMap<String, Integer> coinCount = new HashMap<String, Integer>();
         //coinCount.put("quarters", 0 );
         int quarters = 0;
         int dimes = 0;
-        int nickels = 0;
+       int nickels = 0;
+
+
 
 //could've used modulus to check divisibility by 25, 10, 5 and added that way
-       double initialChange = getFedMoney - getProductPrice;
+       double initialChange = feedMoney - productPrice;
        if(initialChange >= 0) {
            while(initialChange >= .25) {
                quarters += 1;
@@ -79,6 +99,23 @@ public class Purchase {
            }
         return coinCount;
     }
+    public void feedMoney() throws IOException {
+        System.out.println("Please Insert U.S. Dollar Bills ($1 ,$2 ,$5, or $10)" );
+        try {
+            int moneyInserted = in.nextInt();
+            in.nextLine();
+            if (moneyInserted == 1 || moneyInserted == 2 || moneyInserted == 5 || moneyInserted == 10) {
+                System.out.println("Thank You For inserting $" + moneyInserted + ".00");
+            } else {
+                System.out.println("Please Insert Valid Currency");
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Please Insert Valid Currency");
+        }
+
+    }
+
+
     public static void displaysChange(HashMap<String, Integer> changeReturned){
         System.out.println("Your change is... ");
         System.out.println("quarters: " + changeReturned.get("quarters"));

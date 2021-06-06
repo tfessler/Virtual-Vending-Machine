@@ -99,22 +99,7 @@ public class Menu {
 
 	}
 
-	public void feedMoney() throws IOException {
-		System.out.println("Please Insert U.S. Dollar Bills ($1 ,$2 ,$5, or $10)" );
-		VendingMachine newVendingMachine = new VendingMachine();
-		try {
-			int moneyInserted = in.nextInt();
-			in.nextLine();
-			if (moneyInserted == 1 || moneyInserted == 2 || moneyInserted == 5 || moneyInserted == 10) {
-				System.out.println("Thank You For inserting $" + moneyInserted + ".00");
-			} else {
-				System.out.println("Please Insert Valid Currency");
-			}
-		} catch (InputMismatchException e) {
-			System.out.println("Please Insert Valid Currency");
-		}
 
-	}
 
 
 	public void finishTransaction() throws IOException {

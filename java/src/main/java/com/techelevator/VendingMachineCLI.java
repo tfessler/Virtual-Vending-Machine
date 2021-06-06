@@ -17,12 +17,14 @@ public class VendingMachineCLI {
 	private static final String[] PURCHASE_MENU_OPTIONS = { PURCHASE_MENU_FEED_MONEY,
 			PURCHASE_MENU_SELECT_PRODUCT, PURCHASE_MENU_FINISH_TRANSACTION };
 
-
+	private Purchase purchase = new Purchase();
 	private Menu menu;
+	
 
 	public VendingMachineCLI(Menu menu) {
 
 		this.menu = menu;
+
 	}
 
 	public void run() throws IOException {
@@ -54,11 +56,12 @@ public class VendingMachineCLI {
 				label:while (true) {
 
 					String choice2 = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
+					System.out.println("Current Balance: " + purchase.getBalance());
 
 
 					switch (choice2) {
 						case PURCHASE_MENU_FEED_MONEY:
-							menu.feedMoney(); //insert feed money method;
+							purchase.feedMoney(); //insert feed money method;
 
 							break;
 						case PURCHASE_MENU_SELECT_PRODUCT:
@@ -68,7 +71,9 @@ public class VendingMachineCLI {
 							//	menu.; insert finish transaction method here
 							//	menu.; insert the weird sound message here
 							break label;
+
 					}
+					System.out.println("Current Balance: " + purchase.getBalance());
 				}
 		}
 	}
@@ -83,5 +88,11 @@ public class VendingMachineCLI {
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
+
 	}
+
+
+
+
+
 }
