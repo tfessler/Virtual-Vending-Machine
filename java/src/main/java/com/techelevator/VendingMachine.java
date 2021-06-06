@@ -27,41 +27,35 @@ public class VendingMachine {
             //letting me know it received the file
             System.out.println("Loading inventory...");
             setMapFromInputFile(inputList);
-            displayItems();
-            vendProduct("A1");
-            vendProduct("A1");
-            vendProduct("A1");
-            vendProduct("A1");
-            vendProduct("A1");
-            vendProduct("A1");
-            vendProduct("A2");
-            vendProduct("A2");
-            vendProduct("A2");
-            vendProduct("A2");
-            vendProduct("A2");
-            vendProduct("A2");
-            vendProduct("A2");
-            vendProduct("D2");
-            vendProduct("D2");
-            vendProduct("D2");
-            vendProduct("D2");
-            vendProduct("D2");
-            vendProduct("D2");
-            vendProduct("D2");
-            vendProduct("Z2");
-            vendProduct("Z2");
-            vendProduct("Z2");
-            vendProduct("Z2");
-            vendProduct("Z2");
-            vendProduct("Z2");
-
+            // displayItems();
+            // vendProduct("A1");
+            // vendProduct("A1");
+            // vendProduct("A1");
+            // vendProduct("A1");
+            // vendProduct("A1");
+            // vendProduct("A1");
+            // vendProduct("A2");
+            // vendProduct("A2");
+            // vendProduct("A2");
+            // vendProduct("A2");
+            // vendProduct("A2");
+            // vendProduct("A2");
+            // vendProduct("A2");
+            // vendProduct("D2");
+            // vendProduct("D2");
+            // vendProduct("D2");
+            // vendProduct("D2");
+            // vendProduct("D2");
+            // vendProduct("D2");
+            // vendProduct("D2");
+            // vendProduct("Z2");
+            // vendProduct("Z2");
+            // vendProduct("Z2");
+            // vendProduct("Z2");
+            // vendProduct("Z2");
+            // vendProduct("Z2");
 
             //return to main menu?
-
-
-
-
-
         }
     public VendingMachine() throws IOException {
             vendingMachineCoins = new Purchase();
@@ -195,6 +189,7 @@ public class VendingMachine {
         public void vendProduct(String slot) {
 
             //Instance Variables
+            Boolean isInStock = false;
             Product vendedItem;
             String productInfo = "";
 
@@ -220,35 +215,14 @@ public class VendingMachine {
 
                     //pops the actual object item off the stack
                     vendingInventory.get(slot).pop();
+                    isInStock = true;
 
                     //checks if slot is empty tells the user if empty
                 } else if (vendingInventory.get(slot).size() == 0) {
                     System.out.println("That slot is empty!");
                 }
             }
-
-
-            //return popped item sound
-            //sout 'vended item'
-
-            // Stack stack = new Stack();
-            // stack = vendingInventory.get(slot)
-            // if (stack.size() != 0) {
-            //     stack.pop()
-            //
-            // }
-
-
-            //pop product off stack
-
-            //display in console product was vended
-
-            //display in console the noise
-
-            //log
-
         }
-
     }
 
 

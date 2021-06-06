@@ -13,15 +13,19 @@ import java.util.Scanner;
 
 public class Menu {
 
+	//Instance Variables
 	private PrintWriter out;
 	private Scanner in;
 
 
+	//Constructors
 	public Menu(InputStream input, OutputStream output) {
 		this.out = new PrintWriter(output);
 		this.in = new Scanner(input);
 	}
 
+
+	//Getters & Setters
 	public Object getChoiceFromOptions(Object[] options) {
 		Object choice = null;
 		while (choice == null) {
@@ -48,6 +52,8 @@ public class Menu {
 		return choice;
 	}
 
+
+	//Methods
 	private void displayMenuOptions(Object[] options) {
 		out.println();
 		for (int i = 0; i < options.length; i++) {
@@ -63,11 +69,8 @@ public class Menu {
 			displayMenuPurchaseMenu(options);
 			choice = getChoiceFromOptions(options);
 		}
-
-
 		return choice;
 	}
-
 
 	/*public Object getUserChoiceInputPurchaseMenu(Object[] options) {
 		Object choice = null;
@@ -96,11 +99,7 @@ public class Menu {
 		out.println("Current Money Provided: " + balance);
 		out.print("\nPlease choose an option \n1) Feed Money \n2) Select Product \n3)Finish Transaction ");
 		out.flush();
-
 	}
-
-
-
 
 	public void finishTransaction() throws IOException {
 		//System.out.println(Purchase.displaysChange());
@@ -110,14 +109,14 @@ public class Menu {
 		//no way to grab sounds for each product need to make a map
 		}
 
-
-//need a way to select product
 	public void selectProduct() throws IOException {
-		Purchase newPurchase = new Purchase();
-		System.out.println("Please Select Product");
-		String userSelection = in.nextLine();
-		String returnString = newPurchase.purchaseItem(userSelection);
-		System.out.println(returnString);
-	}
 
+
+
+		// Purchase newPurchase = new Purchase();
+		// System.out.println("Please Select Product");
+		// String userSelection = in.nextLine();
+		// String returnString = newPurchase.purchaseItem(userSelection);
+		// System.out.println(returnString);
+	}
 }
