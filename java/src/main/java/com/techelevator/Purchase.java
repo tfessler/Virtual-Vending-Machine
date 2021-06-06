@@ -1,5 +1,6 @@
 package com.techelevator;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
@@ -42,6 +43,8 @@ public class Purchase {
 
 
 
+
+
     //Dollars to make change from = 1, 2, 5, and 10
     //Coin values = .01, .05, .10, .25 in Big Decimal?
 
@@ -54,7 +57,7 @@ public class Purchase {
 
 
 
-    public static HashMap changeReturned(double fedMoney, double productPrice) {
+    public static HashMap changeReturned(double getFedMoney, double getProductPrice) {
         HashMap<String, Integer> coinCount = new HashMap<String, Integer>();
         //coinCount.put("quarters", 0 );
         int quarters = 0;
@@ -62,7 +65,7 @@ public class Purchase {
         int nickels = 0;
 
 //could've used modulus to check divisibility by 25, 10, 5 and added that way
-       double initialChange = fedMoney - productPrice;
+       double initialChange = getFedMoney - getProductPrice;
        if(initialChange >= 0) {
            while(initialChange >= .25) {
                quarters += 1;
@@ -95,8 +98,35 @@ public class Purchase {
 
     }
 
+    public HashMap<Integer, Double> getChangeReturned() {
+        return changeReturned;
+    }
+
+    public String purchaseItem(String slot) throws IOException {
+        VendingMachine newVendingMachine = new VendingMachine();
+
+        try {
+            if ((newVendingMachine.getVendingInventory().containsKey(slot))) {
+                System.out.println("That slot is empty!");
+                //} else if ( fed money < vendedItem cost ) { //use maps price value with slot key
+                return "Please Insert Additional Funds \n";
+            } else {
+                //  Double balanceBeforePurchase = vendingMachineCoins.balance;
+                // subtractFromInventory(slotLocation); need a method to remove the inventory
+                // subtractMoney(slotLocation);          use method in purchase to subtract the product price from fedMoney then produce change
+                String successfulPurchase = "Thank You For Purchasing ";
+                //+ .getName() +  .getSound());
+                // need .logEvent(.getName() + "  " + slot, balanceBeforePurchase, getBalanceAsString());
+                return successfulPurchase + displaysChange();
+            }
+
+        } catch (NullPointerException e){
+            return "Please Make A Valid Selection \n";}
+    }
 
 
 
 
-}
+
+
+    }

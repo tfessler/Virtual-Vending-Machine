@@ -103,7 +103,7 @@ public class VendingMachine {
         }
 
         public void setFedMoney(double fedMoney) {
-            this.fedMoney = fedMoney;
+            this.fedMoney = fedMoney + vendingMachineCoins.getBalance();
         }
 
         public String getSelectedProduct() {
@@ -245,31 +245,9 @@ public class VendingMachine {
             //log
 
         }
-    public String purchaseItem(String slot) throws IOException {
-
-        try {
-            if ((vendingInventory.containsKey(slot))) {
-                 System.out.println("That slot is empty!");
-           //} else if ( - vendedItem) { //use maps price value with slot key
-                return "Please Insert Additional Funds \n";
-            } else {
-              //  Double balanceBeforePurchase = vendingMachineCoins.balance;
-               // subtractFromInventory(slotLocation); need a method to remove the inventory
-                // subtractMoney(slotLocation);          use method in purchase to subtract the product price from fedMoney then produce change
-                String successfulPurchase = "Thank You For Purchasing ";
-                        //+ .getName() +  .getSound());
-                // need .logEvent(.getName() + "  " + slot, balanceBeforePurchase, getBalanceAsString());
-                return successfulPurchase;
-            }
-
-        } catch (NullPointerException e){
-            return "Please Make A Valid Selection \n";}
 
     }
 
-
-
-}
 
 
 

@@ -52,3 +52,4 @@ public abstract class Product {
        return itemInfo;
         // return getProductName();
     }
+}

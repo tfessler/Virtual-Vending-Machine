@@ -106,7 +106,6 @@ public class Menu {
 			int moneyInserted = in.nextInt();
 			in.nextLine();
 			if (moneyInserted == 1 || moneyInserted == 2 || moneyInserted == 5 || moneyInserted == 10) {
-				VendingMachine.fedMoney(moneyInserted);
 				System.out.println("Thank You For inserting $" + moneyInserted + ".00");
 			} else {
 				System.out.println("Please Insert Valid Currency");
@@ -129,10 +128,10 @@ public class Menu {
 
 //need a way to select product
 	public void selectProduct() throws IOException {
-		VendingMachine newVendingMachine = new VendingMachine();
+		Purchase newPurchase = new Purchase();
 		System.out.println("Please Select Product");
 		String userSelection = in.nextLine();
-		String returnString = newVendingMachine.purchaseItem(userSelection);
+		String returnString = newPurchase.purchaseItem(userSelection);
 		System.out.println(returnString);
 	}
 

@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
-public class Logger { /*
+public class Logger {}/*
 
     public void logChange(BigDecimal availableFedMoney) {
         printToLogFile("Dispensed Change $" + availableFedMoney.toString(), availableFedMoney, new BigDecimal("0.00"));
@@ -63,8 +63,4 @@ public class Logger { /*
 }
 
 
-
-
-
-
-
+*/
