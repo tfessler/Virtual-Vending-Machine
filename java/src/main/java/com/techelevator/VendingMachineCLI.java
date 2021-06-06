@@ -79,7 +79,7 @@ public class VendingMachineCLI {
 
 
 
-	public void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException {
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
