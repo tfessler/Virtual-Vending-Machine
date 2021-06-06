@@ -10,7 +10,7 @@ public abstract class Product {
     private double primitiveDouble;
     private String productType;
 
-    public Product( String productName, double primitiveDouble, String productType ) {
+    public Product(String productName, double primitiveDouble, String productType) {
         this.productName = productName;
         this.primitiveDouble = primitiveDouble;
         this.productType = productType;
@@ -43,7 +43,7 @@ public abstract class Product {
     public BigDecimal setScale(int newScale, RoundingMode roundingMode) {
         return (BigDecimal.valueOf(primitiveDouble));
     }
-
+}
   /*  @Override
     public String toString() {
         String itemInfo;
@@ -52,4 +52,3 @@ public abstract class Product {
        return itemInfo;
         // return getProductName();
     }
-}
