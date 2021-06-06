@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
 
-public class Logger {
+public class Logger { /*
 
     public void logChange(BigDecimal availableFedMoney) {
         printToLogFile("Dispensed Change $" + availableFedMoney.toString(),availableFedMoney, new BigDecimal("0.00"));
@@ -34,7 +34,7 @@ public class Logger {
     if (!logFile.exists()) {
 
 
-    }
+    }*/
 
 
 

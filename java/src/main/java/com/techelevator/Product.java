@@ -44,7 +44,7 @@ public abstract class Product {
         return (BigDecimal.valueOf(primitiveDouble));
     }
 
-  /*  @Override
+  @Override
     public String toString() {
         String itemInfo;
         itemInfo = this.productType + ", " + this.productName + ", " + "$" + this.primitiveDouble;

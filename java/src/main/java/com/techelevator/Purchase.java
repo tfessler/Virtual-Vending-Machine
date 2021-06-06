@@ -4,15 +4,22 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 public class Purchase {
-    BigDecimal balance = BigDecimal.valueOf(0.00);
 
-    public void addMoney(BigDecimal amountToDeposit) {
-      double balance += (amountToDeposit);
+
+    private double balance;
+
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void addMoney(double amountToDeposit) {
+        balance = (amountToDeposit);
     }
 
 
     public Purchase() {
-        balance = BigDecimal.valueOf(0);
+        balance = 0;
     }
 
 
@@ -28,8 +35,8 @@ public class Purchase {
     }
 
 
-    //contructor
-    public void Change (HashMap<Integer, Double> changeReturned, double fedMoney, double productPrice){
+    //constructor
+    public void Purchase (HashMap<Integer, Double> changeReturned, double fedMoney, double productPrice){
         this.changeReturned=changeReturned;
     }
 
@@ -47,7 +54,7 @@ public class Purchase {
 
 
 
-    public static HashMap changeReturned(HashMap changeReturned, double fedMoney, double productPrice) {
+    public static HashMap changeReturned(double fedMoney, double productPrice) {
         HashMap<String, Integer> coinCount = new HashMap<String, Integer>();
         //coinCount.put("quarters", 0 );
         int quarters = 0;

@@ -29,7 +29,6 @@ public class VendingMachineCLI {
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
-			String choice2 = null;
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 
 				// display vending machine items
@@ -48,28 +47,36 @@ public class VendingMachineCLI {
 					File userInputList = new File(path);
 					VendingMachine vendingMachine = new VendingMachine(userInputList);
 				}
-
-
-			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				choice2 = (String) menu.getUserChoiceInputPurchaseMenu(PURCHASE_MENU_OPTIONS);
-
-				if (choice2.equals(PURCHASE_MENU_FEED_MONEY)) {
-					menu.feedMoney(); //insert feed money method;
-				}
-
-			} else if (choice2.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
-				menu.selectProduct;
-			} else if (choice2.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
-				//	menu.; insert finish transaction method here
-				//	menu.; insert the weird sound message here
-				break;
 			}
+
+
+			else if (choice.equals(MAIN_MENU_OPTION_PURCHASE))
+				label:while (true) {
+
+					String choice2 = (String) menu.getUserChoiceInputPurchaseMenu(PURCHASE_MENU_OPTIONS);
+
+
+					switch (choice2) {
+						case PURCHASE_MENU_FEED_MONEY:
+							menu.feedMoney(); //insert feed money method;
+
+							break;
+						case PURCHASE_MENU_SELECT_PRODUCT:
+							menu.selectProduct();
+							break;
+						case PURCHASE_MENU_FINISH_TRANSACTION:
+							//	menu.; insert finish transaction method here
+							//	menu.; insert the weird sound message here
+							break label;
+					}
+				}
 		}
+	}
 
 
 
 
-		}
+
 
 
 	public static void main(String[] args) throws IOException {

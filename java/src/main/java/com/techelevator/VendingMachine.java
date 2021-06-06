@@ -1,6 +1,7 @@
 package com.techelevator;
 
-import com.sun.source.tree.Tree;
+import com.techelevator.view.Menu;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +14,8 @@ public class VendingMachine {
         private File inputList;
         private TreeMap<String, Stack> vendingInventoryTree = new TreeMap<>();
         private Map<String, Stack> vendingInventory = new HashMap<>();
-        private Double fedMoney = 0.00;
+        private double fedMoney = 0.00;
+        private Purchase vendingMachineCoins;
         private String selectedProduct;
 
 
@@ -57,10 +59,17 @@ public class VendingMachine {
 
 
 
-
-
-
         }
+    public VendingMachine() throws IOException {
+            vendingMachineCoins = new Purchase();
+    }
+
+
+    public void feedMoney(int billInserted) throws IOException {
+        Purchase.addMoney(billInserted);
+        String billInsertedAsString = "$" + billInserted;
+        // adds when money is inserted Logger.logEvent("Feed Money:", billInsertedAsString, getBalanceAsString());
+    }
 
 
 
@@ -89,11 +98,11 @@ public class VendingMachine {
             this.vendingInventory = vendingInventory;
         }
 
-        public Double getFedMoney() {
+        public double getFedMoney() {
             return fedMoney;
         }
 
-        public void setFedMoney(Double fedMoney) {
+        public void setFedMoney(double fedMoney) {
             this.fedMoney = fedMoney;
         }
 
@@ -183,57 +192,48 @@ public class VendingMachine {
         public void vendProduct(String slot) {
 
             //Instance Variables
-                Product vendedItem;
-                String productInfo = "";
+            Product vendedItem;
+            String productInfo = "";
 
             //check to see if slot contains product
             //check the map for key value 'slot'
-                if (vendingInventory.containsKey(slot)) {
-                    //the maps value for 'slot' will be a stack
-                    //access that stack if not empty
-                    if (vendingInventory.get(slot).size() != 0) {
-                        //pop that stack
-                        //vendedItem = vendingInventory.get(slot).pop().toString();
+            if (vendingInventory.containsKey(slot)) {
+                //the maps value for 'slot' will be a stack
+                //access that stack if not empty
+                if (vendingInventory.get(slot).size() != 0) {
+                    //pop that stack
+                    //vendedItem = vendingInventory.get(slot).pop().toString();
 
-                        //peeks at the item on top of the stack and casts it to a Product class
-                        vendedItem = (Product) vendingInventory.get(slot).peek();
+                    //peeks at the item on top of the stack and casts it to a Product class
+                    vendedItem = (Product) vendingInventory.get(slot).peek();
 
-                        //uses getters from the Product class casting to access the object's attributes
-                        productInfo = vendedItem.getProductType() + ", " + vendedItem.getProductName()
-                                        + ", " + vendedItem.getPrimitiveDouble();
+                    //uses getters from the Product class casting to access the object's attributes
+                    productInfo = vendedItem.getProductType() + ", " + vendedItem.getProductName()
+                            + ", " + vendedItem.getPrimitiveDouble();
 
-                        //prints attributes to console
-                        System.out.println("Vended item: " + productInfo);
-                        System.out.println(vendedItem.getSound());
+                    //prints attributes to console
+                    System.out.println("Vended item: " + productInfo);
+                    System.out.println(vendedItem.getSound());
 
-                        //pops the actual object item off the stack
-                        vendingInventory.get(slot).pop();
+                    //pops the actual object item off the stack
+                    vendingInventory.get(slot).pop();
 
                     //checks if slot is empty tells the user if empty
-                    } else if (vendingInventory.get(slot).size() == 0) {
-                        System.out.println("That slot is empty!");
-                    }
+                } else if (vendingInventory.get(slot).size() == 0) {
+                    System.out.println("That slot is empty!");
                 }
-
-
-            public static void feedMoney(int billInserted) throws IOException {
-                Purchase.addMoney(billInserted);
-                String billInsertedAsString = "$" + billInserted;
-                // adds when money is inserted Logger.logEvent("Feed Money:", billInsertedAsString, getBalanceAsString());
             }
 
 
+            //return popped item sound
+            //sout 'vended item'
 
-
-                    //return popped item sound
-                    //sout 'vended item'
-
-                // Stack stack = new Stack();
-                // stack = vendingInventory.get(slot)
-                // if (stack.size() != 0) {
-                //     stack.pop()
-                //
-                // }
+            // Stack stack = new Stack();
+            // stack = vendingInventory.get(slot)
+            // if (stack.size() != 0) {
+            //     stack.pop()
+            //
+            // }
 
 
             //pop product off stack
@@ -244,7 +244,36 @@ public class VendingMachine {
 
             //log
 
-
         }
+    public String purchaseItem(String slot) throws IOException {
+
+        try {
+            if ((vendingInventory.containsKey(slot))) {
+                 System.out.println("That slot is empty!");
+           //} else if ( - vendedItem) { //use maps price value with slot key
+                return "Please Insert Additional Funds \n";
+            } else {
+              //  Double balanceBeforePurchase = vendingMachineCoins.balance;
+               // subtractFromInventory(slotLocation); need a method to remove the inventory
+                // subtractMoney(slotLocation);          use method in purchase to subtract the product price from fedMoney then produce change
+                String successfulPurchase = "Thank You For Purchasing ";
+                        //+ .getName() +  .getSound());
+                // need .logEvent(.getName() + "  " + slot, balanceBeforePurchase, getBalanceAsString());
+                return successfulPurchase;
+            }
+
+        } catch (NullPointerException e){
+            return "Please Make A Valid Selection \n";}
+
+    }
+
+
 
 }
+
+
+
+
+
+
+
