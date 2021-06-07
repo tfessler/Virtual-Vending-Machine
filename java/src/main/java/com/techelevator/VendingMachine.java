@@ -215,7 +215,8 @@ public class VendingMachine {
 
                 //prints attributes to console
                 System.out.println("Vended item: " + productInfo);
-                System.out.println(vendedItem.getSound());
+                System.out.println("\"" + vendedItem.getSound() + "\"");
+                System.out.println();
 
                 //pops the actual object item off the stack
                 vendingInventory.get(slot).pop();

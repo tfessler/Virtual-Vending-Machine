@@ -59,7 +59,7 @@ public class VendingMachineCLI {
 							System.out.println("Choose a slot to select your product.");
 							usersSelectedProduct = scanner.nextLine();
 							//converts input to uppercase to avoid case sens error
-							usersSelectedProduct.toUpperCase();
+							usersSelectedProduct = usersSelectedProduct.toUpperCase();
 
 							//check if slot actually exists
 							if (vendingMachine.getVendingInventory().containsKey(usersSelectedProduct)) {
@@ -76,7 +76,9 @@ public class VendingMachineCLI {
 										vendingMachine.vendProduct(usersSelectedProduct);
 
 										//after product is dispensed machine must update balance
-
+										//SOME OF THIS HAS TO GO IN FINISH TRANSACTION
+										purchase.setBalance(purchase.getBalance() - productPriceDouble);
+										purchase.displaysChange(purchase.changeReturned(productPriceDouble));
 
 									} else {
 										System.out.println("Please insert more money.");

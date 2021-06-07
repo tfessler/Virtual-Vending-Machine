@@ -44,14 +44,19 @@ public class Purchase {
         return balance;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public HashMap<Integer, Double> getChangeReturned() {
         return changeReturned;
     }
 
+
     //Methods
-    public void addMoney(double amountToDeposit) {
-        this.balance += amountToDeposit;
-    }
+    // public void addMoney(double amountToDeposit) {
+    //     this.balance += amountToDeposit;
+    // }
 
     public static void addMoney(int billInserted) {
         //nothing here yet
@@ -67,7 +72,7 @@ public class Purchase {
 
     }
 
-    public static HashMap changeReturned(double feedMoney, double productPrice) {
+    public HashMap changeReturned(double productPrice) {
         HashMap<String, Integer> coinCount = new HashMap<String, Integer>();
 
         //coinCount.put("quarters", 0 );
@@ -78,28 +83,27 @@ public class Purchase {
 
         //could've used modulus to check divisibility by 25, 10, 5 and added that way
 
-       double initialChange = feedMoney - productPrice;
-       if(initialChange >= 0) {
-           while(initialChange >= .25) {
-               quarters += 1;
-               initialChange -= .25;
-           }
-           while(initialChange >= .10) {
-                   dimes += 1;
-                   initialChange -= .10;
-           }
-           while(initialChange >= .05) {
-               nickels += 1;
-               initialChange -= .05;
-           }
+        double initialChange = this.balance - productPrice;
+        if(initialChange >= 0) {
+            while(initialChange >= .25) {
+                quarters += 1;
+                initialChange -= .25;
+            }
+            while(initialChange >= .10) {
+                dimes += 1;
+                initialChange -= .10;
+            }
+            while(initialChange >= .05) {
+            nickels += 1;
+            initialChange -= .05;
+            }
 
-           coinCount.put("quarters", quarters);
-           coinCount.put("dimes", dimes);
-           coinCount.put("nickels", nickels);
-           return coinCount;
-
-           }
-       return coinCount;
+            coinCount.put("quarters", quarters);
+            coinCount.put("dimes", dimes);
+            coinCount.put("nickels", nickels);
+            return coinCount;
+        }
+        return coinCount;
     }
 
     public void feedMoney() throws IOException {
@@ -119,12 +123,12 @@ public class Purchase {
         }
     }
 
-    public static void displaysChange(HashMap<String, Integer> changeReturned){
+    public void displaysChange(HashMap<String, Integer> changeReturned){
         System.out.println("Your change is... ");
-        System.out.println("quarters: " + changeReturned.get("quarters"));
-        System.out.println("dimes: " + changeReturned.get("dimes"));
-        System.out.println("nickels: " + changeReturned.get("nickels"));
-        System.out.println("..all change has been dispensed, please come again!");
+        System.out.println("QUARTERS: " + changeReturned.get("quarters"));
+        System.out.println("DIMES: " + changeReturned.get("dimes"));
+        System.out.println("NICKELS: " + changeReturned.get("nickels"));
+        System.out.println("...All change has been dispensed, please come again!");
     }
 
     public void purchaseItem(String slot) throws IOException {
