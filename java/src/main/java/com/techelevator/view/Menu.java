@@ -35,7 +35,7 @@ public class Menu {
 		return choice;
 	}
 
-	private Object getChoiceFromUserInput(Object[] options) {
+	public Object getChoiceFromUserInput(Object[] options) {
 		Object choice = null;
 		String userInput = in.nextLine();
 		try {
@@ -54,7 +54,7 @@ public class Menu {
 
 
 	//Methods
-	private void displayMenuOptions(Object[] options) {
+	public void displayMenuOptions(Object[] options) {
 		out.println();
 		for (int i = 0; i < options.length; i++) {
 			int optionNum = i + 1;
@@ -90,7 +90,7 @@ public class Menu {
 		return choice;
 	}*/
 
-	private void displayMenuPurchaseMenu(Object[] options) {
+	public void displayMenuPurchaseMenu(Object[] options) {
 		Purchase balance = new Purchase();
 		for (int i = 0; i < options.length; i++) {
 			int optionNum = i + 1;
@@ -109,14 +109,4 @@ public class Menu {
 		//no way to grab sounds for each product need to make a map
 		}
 
-	public void selectProduct() throws IOException {
-
-
-
-		// Purchase newPurchase = new Purchase();
-		// System.out.println("Please Select Product");
-		// String userSelection = in.nextLine();
-		// String returnString = newPurchase.purchaseItem(userSelection);
-		// System.out.println(returnString);
-	}
 }

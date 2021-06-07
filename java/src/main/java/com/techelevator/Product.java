@@ -28,12 +28,12 @@ public abstract class Product {
         return price;
     }
 
-    public String getProductName() {
+    public String getProductType() {
 
         return productName;
     }
 
-    public String getProductType() {
+    public String getProductName() {
         return productType;
     }
 

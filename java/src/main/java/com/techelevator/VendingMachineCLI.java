@@ -35,40 +35,84 @@ public class VendingMachineCLI {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-
 				vendingMachine.displayItems();
-				// OLD CODE to display vending machine items
-				// Scanner scanner = new Scanner(System.in);
-				// String path = (System.getProperty("user.dir") + "\\vendingmachine.csv");
-				// File inputList = new File(path);
-				//
-				// if (inputList.exists()) {
-				// 	System.out.print("Stocking vending machine via: ");
-				// 	System.out.println(path);
-				// 	VendingMachine vendingMachine = new VendingMachine(inputList);
-				// } else {
-				// 	System.out.println("Inventory file does not exist.");
-				// 	System.out.print("Enter absolute path of inventory file: ");
-				// 	path = scanner.nextLine();
-				// 	File userInputList = new File(path);
-				// 	VendingMachine vendingMachine = new VendingMachine(userInputList);
-				// }
 			}
 
 			else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				label:
 				while (true) {
-
 					String choice2 = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					// System.out.println("Current Balance: " + purchase.getBalance());
 
 					switch (choice2) {
 						case PURCHASE_MENU_FEED_MONEY:
 							purchase.feedMoney(); //insert feed money method;
-
 							break;
 						case PURCHASE_MENU_SELECT_PRODUCT:
-							menu.selectProduct();
+							Scanner scanner = new Scanner(System.in);
+							String usersSelectedProduct = "";
+
+							//display products again
+							vendingMachine.displayItems();
+
+							//ask customer to choose slot
+							System.out.println("Choose a slot to select your product.");
+							usersSelectedProduct = scanner.nextLine();
+							//converts input to uppercase to avoid case sens error
+							usersSelectedProduct.toUpperCase();
+
+							//check if slot actually exists
+							if (vendingMachine.getVendingInventory().containsKey(usersSelectedProduct)) {
+
+								//check if product is sold out
+								if (vendingMachine.getVendingInventory().get(usersSelectedProduct).size() != 0 ) {
+
+									//check if machine balance is enough to dispense product
+									Product productPriceObject = (Product) vendingMachine.getVendingInventory().get(usersSelectedProduct).peek();
+									Double productPriceDouble = productPriceObject.getPrimitiveDouble();
+									if ( purchase.getBalance() >= productPriceDouble ) {
+
+										//if so vend item
+										vendingMachine.vendProduct(usersSelectedProduct);
+
+										//after product is dispensed machine must update balance
+
+
+									} else {
+										System.out.println("Please insert more money.");
+										break;
+									}
+
+								} else if (vendingMachine.getVendingInventory().get(usersSelectedProduct).size() == 0) {
+								System.out.println("That slot is empty!");
+								}
+
+							} else {
+								//return to purchase menu if not
+								System.out.println("That slot does not exist. Choose another.");
+								break;
+							}
+
+							//if so vend item
+							//after product is dispensed machine must update balance
+
+							//FINISH TRANSACTION
+							//product is already vended so do the following:
+							//dispense change
+							//vending machine balance - fed money
+							//call giveChange method or whatever its called
+							//set machine balance back to zero
+							//return them to the main vending machine menu
+
+
+
+							// Purchase newPurchase = new Purchase();
+							// System.out.println("Please Select Product");
+							// String userSelection = in.nextLine();
+							// String returnString = newPurchase.purchaseItem(userSelection);
+							// System.out.println(returnString);
+
+
 							break;
 						case PURCHASE_MENU_FINISH_TRANSACTION:
 							//	menu.; insert finish transaction method here
@@ -109,7 +153,7 @@ public class VendingMachineCLI {
 		Purchase purchase = new Purchase(System.in, System.out);
 		VendingMachine vendingMachine = new VendingMachine(inputList);
 		//Log log = new Log(params) will go here
-		//Log will need to be added to the VendingMachineCLI constructor and
+		//Log will need to be added to the CLI constructor and
 		//the param will need to be passed into the constructor below this line \/
 		VendingMachineCLI cli = new VendingMachineCLI(menu, purchase, vendingMachine);
 		cli.run();

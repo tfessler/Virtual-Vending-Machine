@@ -136,6 +136,7 @@ public class Purchase {
         //if not in stock
             //tell the user the slot is empty
 
+
         // Old code Tracy had
         // try {
         //     if (!newVendingMachine.getVendingInventory().containsKey(slot)) {

@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 
-public class Logger {}/*
+public class Logger {
 
     public void logChange(BigDecimal availableFedMoney) {
         printToLogFile("Dispensed Change $" + availableFedMoney.toString(), availableFedMoney, new BigDecimal("0.00"));
@@ -21,7 +21,7 @@ public class Logger {}/*
 
     public void LogPurchase(String slot, Product productName, Product productType, BigDecimal initialBalance) {
         BigDecimal endingBalance = initialBalance.subtract(productName.getPrice());
-        String line = productName.getProductName() + productType.getProductType() + "  " + slot;
+        String line = productName.getProductName() + "  " + slot;
         printToLogFile(line, initialBalance, endingBalance);
     }
 
@@ -61,6 +61,3 @@ public class Logger {}/*
         }
     }
 }
-
-
-*/
