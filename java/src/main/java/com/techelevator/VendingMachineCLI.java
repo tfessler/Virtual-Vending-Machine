@@ -39,14 +39,17 @@ public class VendingMachineCLI {
 			}
 
 			else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
+
+				Boolean purchaseComplete = false;
+
 				label:
-				while (true) {
+				while (!purchaseComplete) {
 					String choice2 = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					// System.out.println("Current Balance: " + purchase.getBalance());
 
 					switch (choice2) {
 						case PURCHASE_MENU_FEED_MONEY:
-							purchase.feedMoney(); //insert feed money method;
+							purchase.feedMoney();
 							break;
 						case PURCHASE_MENU_SELECT_PRODUCT:
 							Scanner scanner = new Scanner(System.in);
@@ -65,20 +68,21 @@ public class VendingMachineCLI {
 							if (vendingMachine.getVendingInventory().containsKey(usersSelectedProduct)) {
 
 								//check if product is sold out
-								if (vendingMachine.getVendingInventory().get(usersSelectedProduct).size() != 0 ) {
+								if (vendingMachine.getVendingInventory().get(usersSelectedProduct).size() != 0) {
 
 									//check if machine balance is enough to dispense product
 									Product productPriceObject = (Product) vendingMachine.getVendingInventory().get(usersSelectedProduct).peek();
 									Double productPriceDouble = productPriceObject.getPrimitiveDouble();
-									if ( purchase.getBalance() >= productPriceDouble ) {
+									if (purchase.getBalance() >= productPriceDouble) {
 
 										//if so vend item
 										vendingMachine.vendProduct(usersSelectedProduct);
 
 										//after product is dispensed machine must update balance
-										//SOME OF THIS HAS TO GO IN FINISH TRANSACTION
 										purchase.setBalance(purchase.getBalance() - productPriceDouble);
-										purchase.displaysChange(purchase.changeReturned(productPriceDouble));
+										System.out.println("Current Balance Remaining: $" + purchase.getBalance());
+										System.out.println();
+
 
 									} else {
 										System.out.println("Please insert more money.");
@@ -86,7 +90,7 @@ public class VendingMachineCLI {
 									}
 
 								} else if (vendingMachine.getVendingInventory().get(usersSelectedProduct).size() == 0) {
-								System.out.println("That slot is empty!");
+									System.out.println("That slot is empty!");
 								}
 
 							} else {
@@ -94,32 +98,25 @@ public class VendingMachineCLI {
 								System.out.println("That slot does not exist. Choose another.");
 								break;
 							}
+							break;
 
-							//if so vend item
-							//after product is dispensed machine must update balance
+						case PURCHASE_MENU_FINISH_TRANSACTION:
 
 							//FINISH TRANSACTION
 							//product is already vended so do the following:
-							//dispense change
-							//vending machine balance - fed money
-							//call giveChange method or whatever its called
-							//set machine balance back to zero
-							//return them to the main vending machine menu
+							System.out.println("Finalizing transaction...");
 
+							//check if there is change to dispense
+							if (purchase.getBalance() == 0) {
+								System.out.println("There is no change to dispense.");
 
-
-							// Purchase newPurchase = new Purchase();
-							// System.out.println("Please Select Product");
-							// String userSelection = in.nextLine();
-							// String returnString = newPurchase.purchaseItem(userSelection);
-							// System.out.println(returnString);
-
-
-							break;
-						case PURCHASE_MENU_FINISH_TRANSACTION:
-							//	menu.; insert finish transaction method here
-							//	menu.; insert the weird sound message here
-							break label;
+							//else dispense change
+							} else {
+								System.out.println("Current Balance: $" + purchase.getBalance());
+								purchase.displaysChange(purchase.changeReturned(purchase.getBalance()));
+								purchaseComplete = true;
+								break label;
+							}
 					}
 				}
 			}

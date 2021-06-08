@@ -186,7 +186,6 @@ public class VendingMachine {
     }
 
     public void feedMoney(int billInserted) throws IOException {
-        Purchase.addMoney(billInserted);
         String billInsertedAsString = "$" + billInserted;
         // adds when money is inserted Logger.logEvent("Feed Money:", billInsertedAsString, getBalanceAsString());
     }

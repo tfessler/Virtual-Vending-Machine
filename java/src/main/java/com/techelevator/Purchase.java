@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class Purchase {
     private Scanner in = new Scanner(System.in);
     private PrintWriter out;
     private double balance;
+    //add BigDec variable and convert the balance to it and call it back into the Current Balance in feedMoney
 
     //declared to use later in other classes
         //(this old comment was above the private HashMap line below,
@@ -58,21 +60,21 @@ public class Purchase {
     //     this.balance += amountToDeposit;
     // }
 
-    public static void addMoney(int billInserted) {
-        //nothing here yet
+    // public static void addMoney(int billInserted) {
+    //     //nothing here yet
+    //
+    //     //Dollars to make change from = 1, 2, 5, and 10
+    //     //Coin values = .01, .05, .10, .25 in Big Decimal?
+    //
+    //     //I'll make the class main method accept BigDecimal
+    //     //Need to declare a public method to be able to grab from class
+    //
+    //     //i'll make a map with the initial values of the change at 0, so far example 0 quarters, 0 dimes, 0 nickles, 0 pennies(there shouldn't be any pennies)
+    //     //as the initial value of the returned money is counted i'll minus the amount of the coin and add it to the list
+    //
+    // }
 
-        //Dollars to make change from = 1, 2, 5, and 10
-        //Coin values = .01, .05, .10, .25 in Big Decimal?
-
-        //I'll make the class main method accept BigDecimal
-        //Need to declare a public method to be able to grab from class
-
-        //i'll make a map with the initial values of the change at 0, so far example 0 quarters, 0 dimes, 0 nickles, 0 pennies(there shouldn't be any pennies)
-        //as the initial value of the returned money is counted i'll minus the amount of the coin and add it to the list
-
-    }
-
-    public HashMap changeReturned(double productPrice) {
+    public HashMap changeReturned(double vendingMachineBalance) {
         HashMap<String, Integer> coinCount = new HashMap<String, Integer>();
 
         //coinCount.put("quarters", 0 );
@@ -83,19 +85,18 @@ public class Purchase {
 
         //could've used modulus to check divisibility by 25, 10, 5 and added that way
 
-        double initialChange = this.balance - productPrice;
-        if(initialChange >= 0) {
-            while(initialChange >= .25) {
+        if(vendingMachineBalance >= 0) {
+            while(vendingMachineBalance >= .25) {
                 quarters += 1;
-                initialChange -= .25;
+                vendingMachineBalance -= .25;
             }
-            while(initialChange >= .10) {
+            while(vendingMachineBalance >= .10) {
                 dimes += 1;
-                initialChange -= .10;
+                vendingMachineBalance -= .10;
             }
-            while(initialChange >= .05) {
+            while(vendingMachineBalance >= .05) {
             nickels += 1;
-            initialChange -= .05;
+            vendingMachineBalance -= .05;
             }
 
             coinCount.put("quarters", quarters);
@@ -129,6 +130,7 @@ public class Purchase {
         System.out.println("DIMES: " + changeReturned.get("dimes"));
         System.out.println("NICKELS: " + changeReturned.get("nickels"));
         System.out.println("...All change has been dispensed, please come again!");
+        this.balance = 0;
     }
 
     public void purchaseItem(String slot) throws IOException {
