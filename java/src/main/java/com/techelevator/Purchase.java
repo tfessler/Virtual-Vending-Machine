@@ -89,6 +89,7 @@ public class Purchase {
             while(vendingMachineBalance >= .25) {
                 quarters += 1;
                 vendingMachineBalance -= .25;
+                //could add += newVendingMachineBalance
             }
             while(vendingMachineBalance >= .10) {
                 dimes += 1;
