@@ -58,7 +58,7 @@ public class VendingMachine {
         this.vendingInventory = vendingInventory;
     }
 
-    public double getFedMoney() {
+   /* public double getFedMoney() {
         return fedMoney;
     }
 
@@ -72,7 +72,7 @@ public class VendingMachine {
 
     public void setSelectedProduct(String selectedProduct) {
         this.selectedProduct = selectedProduct;
-    }
+    }*/
 
 
     //Methods

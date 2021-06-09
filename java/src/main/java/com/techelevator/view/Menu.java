@@ -44,7 +44,7 @@ public class Menu {
 				choice = options[selectedOption - 1];
 			}
 		} catch (NumberFormatException e) {
-			// eat the exception, an error message will be displayed below since choice will be null
+
 		}
 		if (choice == null) {
 			out.println(System.lineSeparator() + "*** " + userInput + " is not a valid option ***" + System.lineSeparator());
@@ -63,50 +63,6 @@ public class Menu {
 		out.print(System.lineSeparator() + "Please choose an option >>> ");
 		out.flush();
 	}
-	public Object getChoiceFromOptionsPurchaseMenu(Object[] options) {
-		Object choice = null;
-		while (choice == null) {
-			displayMenuPurchaseMenu(options);
-			choice = getChoiceFromOptions(options);
-		}
-		return choice;
-	}
 
-	/*public Object getUserChoiceInputPurchaseMenu(Object[] options) {
-		Object choice = null;
-		String userInput = in.nextLine();
-		try {
-			int selectedOption = Integer.valueOf(userInput);
-			if (selectedOption > 0 && selectedOption <= options.length) {
-				choice = options[selectedOption - 1];
-			}
-		} catch (NumberFormatException e) {
-			// eat the exception, an error message will be displayed below since choice will
-			// be null
-		}
-		if (choice == null) {
-			out.println("\n*** " + userInput + " is not a valid option ***\n");
-		}
-		return choice;
-	}*/
-
-	public void displayMenuPurchaseMenu(Object[] options) {
-		Purchase balance = new Purchase();
-		for (int i = 0; i < options.length; i++) {
-			int optionNum = i + 1;
-			out.println(optionNum + ") " + options[i]);
-		}
-		out.println("Current Money Provided: " + balance);
-		out.print("\nPlease choose an option \n1) Feed Money \n2) Select Product \n3)Finish Transaction ");
-		out.flush();
-	}
-
-	public void finishTransaction() throws IOException {
-		//System.out.println(Purchase.displaysChange());
-	}
-
-	public void returnSoundMessages() {
-		//no way to grab sounds for each product need to make a map
-		}
 
 }
