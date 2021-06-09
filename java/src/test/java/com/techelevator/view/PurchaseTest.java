@@ -10,6 +10,9 @@ import java.util.HashMap;
 
 public class PurchaseTest {
 
+
+
+
     private Purchase purchaseTest;
 
     @Before
@@ -25,14 +28,32 @@ public class PurchaseTest {
         Assert.assertEquals(balanceExpected, purchaseTest.getBalance(), 0);
 
 
+    }
+    @Test
+    public void money_inserted_in_balance_sets_odd_amount() {
+        double balanceExpected = 2.47;
+        purchaseTest.setBalance(2.47);
+        Assert.assertEquals(balanceExpected, purchaseTest.getBalance(), 0);
+
 
     }
+    @Test
+    public void money_inserted_in_balance_sets_negative() { //this is probably not great
+        double balanceExpected = -2.47;
+        purchaseTest.setBalance(-2.47);
+        Assert.assertEquals(balanceExpected, purchaseTest.getBalance(), 0);
+
+
+    }
+
+
     @Test
     public void balance_is_set_to_zero_by_default() {
         double balanceExpected = 0;
         Assert.assertEquals(balanceExpected, purchaseTest.getBalance(), 0);
 
     }
+
     @Test
     public void return_two_dollars_as_coins() {
         HashMap<String, Integer> coinCountTest = new HashMap<String, Integer>();
@@ -71,6 +92,5 @@ public class PurchaseTest {
         purchaseTest.setBalance(0.40);
         Assert.assertEquals(coinCountTest, purchaseTest.changeReturned(purchaseTest.getBalance()));
     }
-
 
 }
